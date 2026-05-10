@@ -239,6 +239,41 @@ a:hover {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.cluster-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cluster-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+}
+
+.cluster-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.cluster-card p {
+  margin: 0;
+}
+
+.cluster-question {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.section-intro {
+  color: var(--muted);
+  max-width: 760px;
+}
+
 .panel {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -307,6 +342,19 @@ a:hover {
   padding: 0.2rem 0.5rem;
 }
 
+.tag-list--left {
+  justify-content: flex-start;
+}
+
+.link-list {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0.9rem 0 0;
+}
+
 .muted {
   color: var(--muted);
 }
@@ -351,6 +399,7 @@ a:hover {
 
   .hero,
   .section-grid,
+  .cluster-grid,
   .content-row {
     grid-template-columns: 1fr;
   }

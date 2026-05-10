@@ -6,6 +6,56 @@ import ContentList from "../components/ContentList.astro";
 const researchEntries = (await getCollection("public"))
   .filter((entry) => entry.id.startsWith("research/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
+
+const clusters = [
+  {
+    title: "AI Trust and Role-Burden Allocation",
+    question: "When is it fair to ask a human participant to trust, verify, supervise, or take responsibility for an AI-mediated outcome?",
+    description:
+      "This project develops a structural account of AI trust. Instead of treating trust mainly as a response to system properties such as transparency, reliability, robustness, fairness, or explainability, it asks whether the human participant occupies a practically inhabitable role within a dependence relation.",
+    keywords: ["AI trust", "role-burden allocation", "oversight", "responsibility"],
+    links: [
+      { label: "From System Properties to the Structure of AI Trust", href: `${siteBase}notes/research/structural-ai-trust/` },
+      { label: "AI Trust and Role-Burden Allocation", href: `${siteBase}notes/research/ai-trust-role-burden/` },
+      { label: "Related paper", href: `${siteBase}papers/` }
+    ]
+  },
+  {
+    title: "Human-AI Dependence and Philosophy of Technology",
+    question: "How do technical systems reshape agency, skill, attention, and responsibility across social practices?",
+    description:
+      "This line of work treats AI systems not merely as tools, but as parts of wider practices. It examines how automation can transform the social niches in which human skills and judgments matter, especially when institutional expectations remain attached to human responsibility.",
+    keywords: ["dependence", "automation", "deskilling", "philosophy of technology"],
+    links: [
+      { label: "Human-review loop for AI-assisted writing", href: `${siteBase}notes/research/human-review-loop/` },
+      { label: "Research logs", href: `${siteBase}research/` }
+    ]
+  },
+  {
+    title: "Collective Forgiveness and Collective Responsibility",
+    question: "How can groups participate in forgiveness, repair, and responsibility without assuming a mysterious group mind?",
+    description:
+      "This project develops a thin practical-normative account of collective forgiveness. It understands collective forgiveness through public standing, recognition, revision, and enactment, with attention to institutional continuity, memory, and political repair.",
+    keywords: ["collective forgiveness", "collective agency", "repair", "public memory"],
+    links: [
+      { label: "Works in progress", href: `${siteBase}papers/` },
+      { label: "CV research overview", href: `${siteBase}cv/` }
+    ]
+  },
+  {
+    title: "Philosophical Methodology, Simplicity, and Intuitions",
+    question: "What role should simplicity, complexity, and intuitive judgment play in philosophical and scientific inquiry?",
+    description:
+      "This work connects metaphilosophy, philosophy of science, and experimental philosophy. It asks how philosophers should use intuitions, how methodological ideals can guide inquiry, and why simplicity and complexity may function as complementary rather than competing virtues.",
+    keywords: ["metaphilosophy", "simplicity", "complexity", "experimental philosophy"],
+    links: [
+      { label: "Papers and course papers", href: `${siteBase}papers/` },
+      { label: "About", href: `${siteBase}about/` }
+    ]
+  }
+];
 ---
 
 <BaseLayout title="Research" description="Public research notes by Yan Zeng.">
@@ -14,10 +64,43 @@ const researchEntries = (await getCollection("public"))
       <p class="eyebrow">Research</p>
       <h1>Research</h1>
       <p>
-        Public research logs and notes after review. Drafts and private materials are
-        excluded from the site build.
+        My research lies at the intersection of epistemology, AI ethics, and
+        philosophy of technology, with a focus on trust, dependence, responsibility,
+        and the practical structure of human-AI relations.
       </p>
     </header>
-    <ContentList entries={researchEntries} />
+
+    <section class="section" aria-labelledby="clusters-title">
+      <h2 id="clusters-title">Research Clusters</h2>
+      <div class="cluster-grid">
+        {
+          clusters.map((cluster) => (
+            <article class="cluster-card">
+              <p class="eyebrow">Cluster</p>
+              <h3>{cluster.title}</h3>
+              <p class="cluster-question">{cluster.question}</p>
+              <p>{cluster.description}</p>
+              <ul class="tag-list tag-list--left" aria-label={`${cluster.title} keywords`}>
+                {cluster.keywords.map((keyword) => <li>{keyword}</li>)}
+              </ul>
+              <ul class="link-list" aria-label={`${cluster.title} links`}>
+                {cluster.links.map((link) => (
+                  <li><a href={link.href}>{link.label}</a></li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="logs-title">
+      <h2 id="logs-title">Public Research Logs</h2>
+      <p class="section-intro">
+        Short reviewed notes that develop, test, or clarify pieces of the larger
+        research program. Drafts and private materials are excluded from the site build.
+      </p>
+      <ContentList entries={researchEntries} />
+    </section>
   </div>
 </BaseLayout>
