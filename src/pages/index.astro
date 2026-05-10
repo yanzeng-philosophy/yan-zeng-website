@@ -7,8 +7,7 @@ const entries = (await getCollection("public")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const latestEntries = entries.slice(0, 3);
-const base = import.meta.env.BASE_URL;
-const basePath = base.endsWith("/") ? base : `${base}/`;
+const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
 ---
 
 <BaseLayout
@@ -26,8 +25,8 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
           been reviewed and approved for publication.
         </p>
         <div class="hero__actions">
-          <a class="button" href={`${basePath}research/`}>Read research notes</a>
-          <a class="button button--secondary" href={`${basePath}now/`}>See now page</a>
+          <a class="button" href={`${siteBase}research/`}>Read research notes</a>
+          <a class="button button--secondary" href={`${siteBase}now/`}>See now page</a>
         </div>
       </div>
 

@@ -7,9 +7,8 @@ interface Props {
 }
 
 const { entries, emptyText = "No public entries yet." } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const basePath = base.endsWith("/") ? base : `${base}/`;
-const hrefForEntry = (id: string) => `${basePath}notes/${id.replace(/\.md$/, "")}/`;
+const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
+const hrefForEntry = (id: string) => `${siteBase}notes/${id.replace(/\.md$/, "")}/`;
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
     year: "numeric",
