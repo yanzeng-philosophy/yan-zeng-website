@@ -8,6 +8,7 @@ Minimal Astro + Markdown personal academic website.
 - Markdown content loaded only from `content/public/`.
 - Draft and private folders for a human-reviewed writing workflow.
 - English, Chinese, and Japanese site pages with a static translation workflow.
+- A static encrypted `/secret/` section for low-risk notes shared with trusted readers.
 - `AGENTS.md` with privacy, content, and style rules for Codex.
 - GitHub Pages deployment workflow under `.github/workflows/deploy.yml`.
 
@@ -68,6 +69,20 @@ npm run translation:status
 ```
 
 See [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md) for the full just-in-time translation loop.
+
+## Secret Notes
+
+The `/secret/` page can decrypt password-protected notes in the browser. Plaintext source files stay local under `content/secret-source/` and are ignored by git. Published secret notes are encrypted JSON files under `public/secret/`.
+
+Create and encrypt a local note:
+
+```powershell
+$env:SECRET_NOTE_PASSWORD="use-a-long-private-passphrase"
+npm run secret:encrypt -- friends
+Remove-Item Env:\SECRET_NOTE_PASSWORD
+```
+
+See [SECRET_SECTION.md](SECRET_SECTION.md) for the full workflow and safety limits.
 
 ## Public Post Frontmatter
 

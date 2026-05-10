@@ -23,6 +23,9 @@ Never publish or expose:
 - Only files in `content/public/` may be rendered by the site.
 - Files in `content/drafts/` are unapproved drafts and must not be rendered.
 - Files in `content/private/` must never be used by the website.
+- Files in `content/secret-source/` are plaintext secret sources and must never be committed except for the README.
+- Only encrypted payloads in `public/secret/` may be published for the `/secret/` page.
+- Never put passwords, passphrases, or plaintext secret content in source code, Markdown, docs, Git history, or commit messages.
 - Every public post must have frontmatter:
   - `title`
   - `date`
@@ -45,3 +48,4 @@ Never publish or expose:
 - Prefer Markdown content over custom code for ordinary notes.
 - Do not add automation that publishes content without review.
 - Keep the public, draft, and private content boundaries explicit.
+- Treat the secret section as encrypted sharing for low-risk trusted-reader notes, not as a place for high-risk personal records.

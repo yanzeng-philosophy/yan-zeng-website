@@ -13,3 +13,7 @@ content/private/**
 content/drafts/**/*.md
 !content/drafts/README.md
 !content/drafts/ai-generated/sample-draft.md
+
+# Secret source files must stay local. Only encrypted payloads in public/secret may be published.
+content/secret-source/**
+!content/secret-source/README.md

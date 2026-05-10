@@ -11,6 +11,7 @@
     "translation:status": "node tools/translation-status.mjs",
     "translation:strict": "node tools/translation-status.mjs --strict",
     "translation:stubs": "node tools/translation-status.mjs --write-stubs",
+    "secret:encrypt": "node tools/encrypt-secret-note.mjs",
     "astro": "astro"
   },
   "dependencies": {
