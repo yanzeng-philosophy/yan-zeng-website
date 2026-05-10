@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
 const lifeEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("life/"))
+  .filter((entry) => entry.id.startsWith("zh/life/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -15,6 +15,6 @@ const lifeEntries = (await getCollection("public"))
       <h1>生活</h1>
       <p>公开生活札记会避免地址、财务、健康、家庭和行政细节，只保留适合公开的反思。</p>
     </header>
-    <ContentList entries={lifeEntries} />
+    <ContentList entries={lifeEntries} locale="zh" />
   </div>
 </BaseLayout>

@@ -6,7 +6,9 @@ import ContentList from "../components/ContentList.astro";
 const entries = (await getCollection("public")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const latestEntries = entries.slice(0, 3);
+const latestEntries = entries
+  .filter((entry) => !entry.id.startsWith("zh/") && !entry.id.startsWith("ja/"))
+  .slice(0, 3);
 const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
 ---
 

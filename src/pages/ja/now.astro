@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
 const nowEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("now/"))
+  .filter((entry) => entry.id.startsWith("ja/now/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -15,6 +15,6 @@ const nowEntries = (await getCollection("public"))
       <h1>近況</h1>
       <p>現在の研究上の焦点、公開プロジェクト、生活上の重点についての短い更新。</p>
     </header>
-    <ContentList entries={nowEntries} />
+    <ContentList entries={nowEntries} locale="ja" />
   </div>
 </BaseLayout>

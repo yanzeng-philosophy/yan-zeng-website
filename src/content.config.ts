@@ -10,7 +10,8 @@ const publicContent = defineCollection({
     status: z.literal("public"),
     tags: z.array(z.string()).default([]),
     summary: z.string().optional(),
-    language: z.enum(["en", "zh", "bilingual"]).default("en")
+    language: z.enum(["en", "zh", "ja", "bilingual"]).default("en"),
+    translationOf: z.string().optional()
   })
 });
 

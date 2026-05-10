@@ -5,7 +5,7 @@ import ContentList from "../../components/ContentList.astro";
 import { hrefForPage } from "../../data/i18n";
 
 const researchEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("research/"))
+  .filter((entry) => entry.id.startsWith("zh/research/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const clusters = [
@@ -74,7 +74,7 @@ const clusters = [
     <section class="section" aria-labelledby="logs-title">
       <h2 id="logs-title">公开研究日志</h2>
       <p class="section-intro">这些短札记用于发展、测试或澄清更大的研究项目。目前正文主要保留英文原文。</p>
-      <ContentList entries={researchEntries} />
+      <ContentList entries={researchEntries} locale="zh" />
     </section>
   </div>
 </BaseLayout>

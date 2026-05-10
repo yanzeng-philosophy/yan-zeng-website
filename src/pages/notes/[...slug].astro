@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absolutePath, hrefForPage, noteHref, type Lang } from "../../data/i18n";
 
 interface Props {
   entry: CollectionEntry<"public">;
@@ -9,13 +10,29 @@ interface Props {
 
 export async function getStaticPaths() {
   const entries = await getCollection("public");
-  return entries.map((entry) => ({
+  const canonicalEntries = entries.filter(
+    (entry) => !entry.id.startsWith("zh/") && !entry.id.startsWith("ja/")
+  );
+  return canonicalEntries.map((entry) => ({
     params: { slug: entry.id.replace(/\.md$/, "") },
     props: { entry }
   }));
 }
 
 const { entry } = Astro.props;
+const allEntries = await getCollection("public");
+const canonicalId = entry.id.replace(/\.md$/, "");
+const languageHrefs: Partial<Record<Lang, string>> = {
+  en: noteHref(canonicalId),
+  zh:
+    allEntries.some((candidate) => candidate.id.replace(/\.md$/, "") === `zh/${canonicalId}`)
+      ? absolutePath(`zh/notes/${canonicalId}/`)
+      : hrefForPage("research", "zh"),
+  ja:
+    allEntries.some((candidate) => candidate.id.replace(/\.md$/, "") === `ja/${canonicalId}`)
+      ? absolutePath(`ja/notes/${canonicalId}/`)
+      : hrefForPage("research", "ja")
+};
 const { Content } = await render(entry);
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
@@ -25,7 +42,7 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.summary ?? entry.data.category} pageKey="research">
+<BaseLayout title={entry.data.title} description={entry.data.summary ?? entry.data.category} pageKey="research" languageHrefs={languageHrefs}>
   <div class="page">
     <article class="prose">
       <p class="eyebrow">{entry.data.category} | {formatDate(entry.data.date)}</p>

@@ -1,16 +1,16 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { noteHref, type Lang } from "../data/i18n";
 
 interface Props {
   entries: CollectionEntry<"public">[];
   emptyText?: string;
+  locale?: Lang;
 }
 
-const { entries, emptyText = "No public entries yet." } = Astro.props;
-const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
-const hrefForEntry = (id: string) => `${siteBase}notes/${id.replace(/\.md$/, "")}/`;
+const { entries, emptyText = "No public entries yet.", locale = "en" } = Astro.props;
 const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat("en", {
+  new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : "en", {
     year: "numeric",
     month: "short",
     day: "numeric"
@@ -25,7 +25,7 @@ const formatDate = (date: Date) =>
           <article class="content-row">
             <div>
               <p class="eyebrow">{entry.data.category} | {formatDate(entry.data.date)}</p>
-              <h2><a href={hrefForEntry(entry.id)}>{entry.data.title}</a></h2>
+              <h2><a href={noteHref(entry.id)}>{entry.data.title}</a></h2>
               {entry.data.summary && <p>{entry.data.summary}</p>}
             </div>
             <ul class="tag-list" aria-label="Tags">

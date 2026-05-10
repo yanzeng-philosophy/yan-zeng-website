@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
 const blogEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("essays/"))
+  .filter((entry) => entry.id.startsWith("zh/essays/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -15,6 +15,6 @@ const blogEntries = (await getCollection("public"))
       <h1>Blog / Notes</h1>
       <p>经过审核的公开文章、学术札记和思想笔记。部分正文暂时保留英文原文。</p>
     </header>
-    <ContentList entries={blogEntries} />
+    <ContentList entries={blogEntries} locale="zh" />
   </div>
 </BaseLayout>

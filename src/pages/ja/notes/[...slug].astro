@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { absolutePath, hrefForPage, noteHref, type Lang } from "../../../data/i18n";
+
+interface Props {
+  entry: CollectionEntry<"public">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("public");
+  const jaEntries = entries.filter((entry) => entry.id.startsWith("ja/"));
+  return jaEntries.map((entry) => ({
+    params: { slug: entry.id.replace(/^ja\//, "").replace(/\.md$/, "") },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const allEntries = await getCollection("public");
+const localizedId = entry.id.replace(/^ja\//, "").replace(/\.md$/, "");
+const canonicalId = entry.data.translationOf?.replace(/\.md$/, "") ?? localizedId;
+const languageHrefs: Partial<Record<Lang, string>> = {
+  en: allEntries.some((candidate) => candidate.id.replace(/\.md$/, "") === canonicalId)
+    ? noteHref(canonicalId)
+    : hrefForPage("research", "en"),
+  zh: allEntries.some((candidate) => candidate.id.replace(/\.md$/, "") === `zh/${canonicalId}`)
+    ? absolutePath(`zh/notes/${canonicalId}/`)
+    : hrefForPage("research", "zh"),
+  ja: absolutePath(`ja/notes/${localizedId}/`)
+};
+const { Content } = await render(entry);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }).format(date);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.summary ?? entry.data.category}
+  lang="ja"
+  pageKey="research"
+  languageHrefs={languageHrefs}
+>
+  <div class="page">
+    <article class="prose">
+      <p class="eyebrow">{entry.data.category} | {formatDate(entry.data.date)}</p>
+      <h1>{entry.data.title}</h1>
+      {entry.data.summary && <p class="muted">{entry.data.summary}</p>}
+      <ul class="tag-list" aria-label="タグ">
+        {entry.data.tags.map((tag: string) => <li>{tag}</li>)}
+      </ul>
+      <Content />
+    </article>
+  </div>
+</BaseLayout>

@@ -87,3 +87,14 @@ export function absolutePath(path: string) {
 export function hrefForPage(page: PageKey, lang: Lang) {
   return absolutePath(pagePaths[page][lang]);
 }
+
+export function noteHref(id: string) {
+  const cleanId = id.replace(/\.md$/, "");
+  if (cleanId.startsWith("zh/")) {
+    return absolutePath(`zh/notes/${cleanId.replace(/^zh\//, "")}/`);
+  }
+  if (cleanId.startsWith("ja/")) {
+    return absolutePath(`ja/notes/${cleanId.replace(/^ja\//, "")}/`);
+  }
+  return absolutePath(`notes/${cleanId}/`);
+}

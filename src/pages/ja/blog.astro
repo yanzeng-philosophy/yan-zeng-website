@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
 const blogEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("essays/"))
+  .filter((entry) => entry.id.startsWith("ja/essays/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -15,6 +15,6 @@ const blogEntries = (await getCollection("public"))
       <h1>Blog / Notes</h1>
       <p>確認済みの公開エッセイ、学術ノート、思考の記録。本文の一部は現在英語で掲載しています。</p>
     </header>
-    <ContentList entries={blogEntries} />
+    <ContentList entries={blogEntries} locale="ja" />
   </div>
 </BaseLayout>

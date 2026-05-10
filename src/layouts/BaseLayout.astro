@@ -15,13 +15,15 @@ interface Props {
   description?: string;
   lang?: Lang;
   pageKey?: PageKey;
+  languageHrefs?: Partial<Record<Lang, string>>;
 }
 
 const {
   title = "Yan Zeng",
   description = "Personal academic website for research, writing, and public notes.",
   lang = "en",
-  pageKey = "home"
+  pageKey = "home",
+  languageHrefs = {}
 } = Astro.props;
 
 const siteTitle = title === "Yan Zeng" ? title : `${title} | Yan Zeng`;
@@ -33,7 +35,7 @@ const navItems = navOrder.map((key) => ({
 const languageLinks = (Object.keys(languages) as Lang[]).map((code) => ({
   code,
   ...languages[code],
-  href: hrefForPage(pageKey, code)
+  href: languageHrefs[code] ?? hrefForPage(pageKey, code)
 }));
 ---
 

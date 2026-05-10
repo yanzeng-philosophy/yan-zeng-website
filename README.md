@@ -7,6 +7,7 @@ Minimal Astro + Markdown personal academic website.
 - Home, About, CV, Research, Papers, Blog, Life, and Now pages.
 - Markdown content loaded only from `content/public/`.
 - Draft and private folders for a human-reviewed writing workflow.
+- English, Chinese, and Japanese site pages with a static translation workflow.
 - `AGENTS.md` with privacy, content, and style rules for Codex.
 - GitHub Pages deployment workflow under `.github/workflows/deploy.yml`.
 
@@ -49,6 +50,24 @@ Use this loop:
 Only `content/public/` is read by Astro. Drafts and private files are not rendered.
 
 Important: if the GitHub repository is public, files in `content/drafts/` may still be visible on GitHub. Keep real drafts in a private repository or local-only workspace unless they are safe to expose.
+
+## Translation Workflow
+
+English Markdown files are canonical. Chinese and Japanese translations live under matching paths:
+
+```text
+content/public/research/example.md
+content/public/zh/research/example.md
+content/public/ja/research/example.md
+```
+
+Check translation coverage:
+
+```bash
+npm run translation:status
+```
+
+See [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md) for the full just-in-time translation loop.
 
 ## Public Post Frontmatter
 

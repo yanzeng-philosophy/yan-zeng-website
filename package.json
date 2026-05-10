@@ -8,6 +8,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "translation:status": "node tools/translation-status.mjs",
+    "translation:strict": "node tools/translation-status.mjs --strict",
+    "translation:stubs": "node tools/translation-status.mjs --write-stubs",
     "astro": "astro"
   },
   "dependencies": {

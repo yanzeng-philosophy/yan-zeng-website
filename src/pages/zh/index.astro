@@ -7,7 +7,7 @@ import { hrefForPage } from "../../data/i18n";
 const entries = (await getCollection("public")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const latestEntries = entries.slice(0, 3);
+const latestEntries = entries.filter((entry) => entry.id.startsWith("zh/")).slice(0, 3);
 ---
 
 <BaseLayout
@@ -67,7 +67,7 @@ const latestEntries = entries.slice(0, 3);
     <section class="section" aria-labelledby="latest-title">
       <h2 id="latest-title">最新公开札记</h2>
       <p class="section-intro">以下研究日志目前保留英文原题；后续可以逐篇增加中文版本。</p>
-      <ContentList entries={latestEntries} />
+      <ContentList entries={latestEntries} locale="zh" />
     </section>
   </div>
 </BaseLayout>

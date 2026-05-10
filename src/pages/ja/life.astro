@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
 const lifeEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("life/"))
+  .filter((entry) => entry.id.startsWith("ja/life/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -15,6 +15,6 @@ const lifeEntries = (await getCollection("public"))
       <h1>生活</h1>
       <p>公開生活ノートでは住所、財務、健康、家族、行政上の詳細を避け、公開に適した反省だけを残します。</p>
     </header>
-    <ContentList entries={lifeEntries} />
+    <ContentList entries={lifeEntries} locale="ja" />
   </div>
 </BaseLayout>
