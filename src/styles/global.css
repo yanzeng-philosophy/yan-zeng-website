@@ -247,10 +247,11 @@ a:hover {
   font-size: 6.3rem;
   font-weight: 820;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 0.98;
   margin: 0;
   max-width: 880px;
   overflow-wrap: anywhere;
+  padding-bottom: 0.08em;
 }
 
 .hero h1 {
