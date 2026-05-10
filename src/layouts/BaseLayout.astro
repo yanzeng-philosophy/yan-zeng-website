@@ -13,7 +13,9 @@ const {
 
 const siteTitle = title === "Yan Zeng" ? title : `${title} | Yan Zeng`;
 const base = import.meta.env.BASE_URL;
-const hrefFor = (href: string) => (href === "/" ? base : `${base}${href.replace(/^\//, "")}`);
+const basePath = base.endsWith("/") ? base : `${base}/`;
+const hrefFor = (href: string) =>
+  href === "/" ? basePath : `${basePath}${href.replace(/^\/+/, "")}`;
 
 const navItems = [
   { href: "/", label: "Home" },

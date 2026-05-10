@@ -8,6 +8,7 @@ const entries = (await getCollection("public")).sort(
 );
 const latestEntries = entries.slice(0, 3);
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
 ---
 
 <BaseLayout
@@ -25,8 +26,8 @@ const base = import.meta.env.BASE_URL;
           been reviewed and approved for publication.
         </p>
         <div class="hero__actions">
-          <a class="button" href={`${base}research/`}>Read research notes</a>
-          <a class="button button--secondary" href={`${base}now/`}>See now page</a>
+          <a class="button" href={`${basePath}research/`}>Read research notes</a>
+          <a class="button button--secondary" href={`${basePath}now/`}>See now page</a>
         </div>
       </div>
 
