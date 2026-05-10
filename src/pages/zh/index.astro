@@ -22,8 +22,8 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("zh/")).slic
         <p class="eyebrow">加州大学尔湾分校哲学系博士生</p>
         <h1 id="home-title">Yan Zeng</h1>
         <p class="hero__dek">
-          我的研究关注认识论、AI 伦理、信任，以及人类与 AI 之间依赖关系的结构。
-          这个网站是一个经过审核的公开研究笔记本，用来积累可以公开分享的思想、论文进展与学术材料。
+          我研究 AI 系统如何重塑信任、责任和人的能动性。这个网站既是我的学术主页，
+          也是一个公开笔记本，用来积累经过审核的研究、写作、项目和可公开的反思。
         </p>
         <div class="hero__actions">
           <a class="button" href={hrefForPage("research", "zh")}>阅读研究</a>
@@ -34,12 +34,12 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("zh/")).slic
       <aside class="research-visual" aria-label="研究主题">
         <div class="research-visual__grid">
           <div class="research-visual__cell"><strong>信任</strong><span>AI 中介实践</span></div>
-          <div class="research-visual__cell"><strong>角色</strong><span>责任负担分配</span></div>
-          <div class="research-visual__cell"><strong>生态位</strong><span>社会依赖</span></div>
-          <div class="research-visual__cell"><strong>判断</strong><span>人类责任</span></div>
+          <div class="research-visual__cell"><strong>责任</strong><span>角色负担分配</span></div>
+          <div class="research-visual__cell"><strong>能动性</strong><span>人类判断</span></div>
+          <div class="research-visual__cell"><strong>依赖</strong><span>社会关系</span></div>
           <div class="research-visual__cell"><strong>札记</strong><span>公开研究日志</span></div>
-          <div class="research-visual__cell"><strong>草稿</strong><span>审核后发布</span></div>
-          <div class="research-visual__cell"><strong>伦理</strong><span>系统与能动性</span></div>
+          <div class="research-visual__cell"><strong>项目</strong><span>未来创作空间</span></div>
+          <div class="research-visual__cell"><strong>伦理</strong><span>系统与制度</span></div>
           <div class="research-visual__cell"><strong>方法</strong><span>清晰论证</span></div>
           <div class="research-visual__cell"><strong>近况</strong><span>当前工作</span></div>
         </div>
@@ -51,22 +51,21 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("zh/")).slic
       <div class="section-grid">
         <article class="panel">
           <h3>研究</h3>
-          <p>关于信任、依赖、AI 伦理和社会认识论的工作笔记。</p>
+          <p>关于信任、依赖、责任、AI 伦理和社会认识论的学术工作。</p>
         </article>
         <article class="panel">
-          <h3>写作</h3>
-          <p>公开文章与札记，支持中英日多语言结构。</p>
+          <h3>公开笔记本</h3>
+          <p>经过审核的札记、文章、项目和反思，用来积累长期可用的知识资产。</p>
         </article>
         <article class="panel">
           <h3>近况</h3>
-          <p>对当前研究重点和公开生活节奏的简短更新。</p>
+          <p>关于当前研究、写作和公开项目的简短更新。</p>
         </article>
       </div>
     </section>
 
     <section class="section" aria-labelledby="latest-title">
       <h2 id="latest-title">最新公开札记</h2>
-      <p class="section-intro">以下研究日志目前保留英文原题；后续可以逐篇增加中文版本。</p>
       <ContentList entries={latestEntries} locale="zh" />
     </section>
   </div>

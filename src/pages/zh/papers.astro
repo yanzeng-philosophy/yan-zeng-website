@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { hrefForPage } from "../../data/i18n";
 ---
 
 <BaseLayout title="论文" description="Yan Zeng 的公开论文信息。" lang="zh" pageKey="papers">
@@ -7,29 +8,27 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <header class="page-title">
       <p class="eyebrow">论文</p>
       <h1>论文</h1>
-      <p>进行中的论文与公开论文信息。预印本只会在确认可以公开流通后加入。</p>
+      <p>已发表、已接受或明确适合公开流通的作品会列在这里。</p>
     </header>
 
-    <section class="section-grid" aria-label="论文列表">
+    <section class="section-grid" aria-label="论文公开原则">
       <article class="panel">
-        <h3>Unfair Role-Burden Allocation and the Structure of AI Trust</h3>
-        <p class="muted">手稿进行中。</p>
-        <p>发展一种结构性 AI 信任理论，核心是人类-AI 依赖关系中的公平角色分配。</p>
+        <h3>公开原则</h3>
+        <p>只有在作品已经发表、接受，或明确可以公开流通时，我才会在这里列出论文信息。</p>
       </article>
       <article class="panel">
-        <h3>Collective Forgiveness as a Thin Practical-Normative Act</h3>
-        <p class="muted">手稿进行中。</p>
-        <p>回应 group-mind 异议，辩护一种薄的实践性集体宽恕理论。</p>
+        <h3>当前手稿</h3>
+        <p>未发表、仍在审核中或仍在发展的手稿，不会公开标题、摘要或论证细节。</p>
       </article>
       <article class="panel">
-        <h3>Simplicity and Complexity in Philosophy and Science</h3>
-        <p class="muted">课程论文 / 进行中。</p>
-        <p>把简单性和复杂性理解为探究中的互补方法论原则。</p>
+        <h3>研究概览</h3>
+        <p>如果想了解我的公开研究方向，可以查看研究页面。</p>
+        <p><a href={hrefForPage("research", "zh")}>前往研究页面</a></p>
       </article>
       <article class="panel">
-        <h3>Hume on Miracles, Testimony, and Evidential Proportionality</h3>
-        <p class="muted">课程论文。</p>
-        <p>通过 testimony、evidential proportionality 和 comparative probability 重构 Hume 的 “Of Miracles”。</p>
+        <h3>公开作品</h3>
+        <p class="muted">目前还没有列出的已发表或已接受论文。</p>
+        <p>当有作品适合公开流通时，这个页面会更新。</p>
       </article>
     </section>
   </div>

@@ -22,8 +22,8 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("ja/")).slic
         <p class="eyebrow">カリフォルニア大学アーバイン校 哲学科 PhD Student</p>
         <h1 id="home-title">Yan Zeng</h1>
         <p class="hero__dek">
-          私の研究は認識論、AI倫理、信頼、そして人間とAIの依存関係の構造に関わっています。
-          このサイトは、公開可能な研究ノート、論文情報、学術資料を蓄積するための公開ノートです。
+          私はAIシステムが信頼、責任、人間の行為性をどのように作り変えるのかを研究しています。
+          このサイトは、学術プロフィールであると同時に、研究、執筆、プロジェクト、選ばれた省察のための公開ノートです。
         </p>
         <div class="hero__actions">
           <a class="button" href={hrefForPage("research", "ja")}>研究を読む</a>
@@ -34,12 +34,12 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("ja/")).slic
       <aside class="research-visual" aria-label="研究テーマ">
         <div class="research-visual__grid">
           <div class="research-visual__cell"><strong>信頼</strong><span>AI媒介的実践</span></div>
-          <div class="research-visual__cell"><strong>役割</strong><span>負担の配分</span></div>
-          <div class="research-visual__cell"><strong>ニッチ</strong><span>社会的依存</span></div>
-          <div class="research-visual__cell"><strong>判断</strong><span>人間の責任</span></div>
+          <div class="research-visual__cell"><strong>責任</strong><span>役割負担の配分</span></div>
+          <div class="research-visual__cell"><strong>行為性</strong><span>人間の判断</span></div>
+          <div class="research-visual__cell"><strong>依存</strong><span>社会的関係</span></div>
           <div class="research-visual__cell"><strong>ノート</strong><span>公開研究ログ</span></div>
-          <div class="research-visual__cell"><strong>草稿</strong><span>確認後に公開</span></div>
-          <div class="research-visual__cell"><strong>倫理</strong><span>システムと行為性</span></div>
+          <div class="research-visual__cell"><strong>プロジェクト</strong><span>今後の創作</span></div>
+          <div class="research-visual__cell"><strong>倫理</strong><span>制度とシステム</span></div>
           <div class="research-visual__cell"><strong>方法</strong><span>明晰な議論</span></div>
           <div class="research-visual__cell"><strong>近況</strong><span>現在の仕事</span></div>
         </div>
@@ -51,22 +51,21 @@ const latestEntries = entries.filter((entry) => entry.id.startsWith("ja/")).slic
       <div class="section-grid">
         <article class="panel">
           <h3>研究</h3>
-          <p>信頼、依存、AI倫理、社会認識論に関する研究ノート。</p>
+          <p>信頼、依存、責任、AI倫理、社会認識論に関する学術研究。</p>
         </article>
         <article class="panel">
-          <h3>執筆</h3>
-          <p>公開エッセイとノート。英語・中国語・日本語に対応した構成。</p>
+          <h3>公開ノート</h3>
+          <p>確認済みのノート、エッセイ、プロジェクト、省察を長期的な知的資産として蓄積します。</p>
         </article>
         <article class="panel">
           <h3>近況</h3>
-          <p>現在の研究上の関心と公開できる生活上の重点についての短い更新。</p>
+          <p>現在の研究、執筆、公開プロジェクトについての短い更新。</p>
         </article>
       </div>
     </section>
 
     <section class="section" aria-labelledby="latest-title">
       <h2 id="latest-title">最新の公開ノート</h2>
-      <p class="section-intro">研究ログ本文は現時点では主に英語で掲載しています。今後、日本語版を順次追加できます。</p>
       <ContentList entries={latestEntries} locale="ja" />
     </section>
   </div>

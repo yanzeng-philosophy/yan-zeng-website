@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { hrefForPage } from "../../data/i18n";
 ---
 
 <BaseLayout title="論文" description="Yan Zeng の公開論文情報。" lang="ja" pageKey="papers">
@@ -7,29 +8,27 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <header class="page-title">
       <p class="eyebrow">論文</p>
       <h1>論文</h1>
-      <p>進行中の論文と公開可能な論文情報。プレプリントは公開を確認した後に追加します。</p>
+      <p>出版済み、採択済み、または明確に公開可能な研究のみをここに掲載します。</p>
     </header>
 
-    <section class="section-grid" aria-label="論文一覧">
+    <section class="section-grid" aria-label="論文公開方針">
       <article class="panel">
-        <h3>Unfair Role-Burden Allocation and the Structure of AI Trust</h3>
-        <p class="muted">Manuscript in progress.</p>
-        <p>人間-AIの依存関係における公平な役割配分を中心に、AI信頼の構造的説明を展開する。</p>
+        <h3>公開方針</h3>
+        <p>論文情報は、出版・採択・公開可能性が確認された段階で掲載します。</p>
       </article>
       <article class="panel">
-        <h3>Collective Forgiveness as a Thin Practical-Normative Act</h3>
-        <p class="muted">Manuscript in progress.</p>
-        <p>group-mind objection に対して、薄い実践的説明としての集合的赦しを擁護する。</p>
+        <h3>現在の原稿</h3>
+        <p>未発表、審査中、または発展途上の原稿については、タイトル、要旨、議論の詳細を公開しません。</p>
       </article>
       <article class="panel">
-        <h3>Simplicity and Complexity in Philosophy and Science</h3>
-        <p class="muted">Course paper / work in progress.</p>
-        <p>探究における単純性と複雑性を補完的な方法論的原理として検討する。</p>
+        <h3>研究概要</h3>
+        <p>公開可能な研究領域の概要は、研究ページをご覧ください。</p>
+        <p><a href={hrefForPage("research", "ja")}>研究ページへ</a></p>
       </article>
       <article class="panel">
-        <h3>Hume on Miracles, Testimony, and Evidential Proportionality</h3>
-        <p class="muted">Course paper.</p>
-        <p>証言、証拠の比例性、比較確率を通じて Hume の “Of Miracles” を再構成する。</p>
+        <h3>公開研究</h3>
+        <p class="muted">現在、掲載できる出版済みまたは採択済み論文はありません。</p>
+        <p>公開可能な研究ができた段階で、このページを更新します。</p>
       </article>
     </section>
   </div>
