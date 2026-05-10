@@ -1,19 +1,19 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ContentList from "../components/ContentList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentList from "../../components/ContentList.astro";
 
 const blogEntries = (await getCollection("public"))
   .filter((entry) => entry.id.startsWith("essays/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="Blog" description="Public essays and notes by Yan Zeng." pageKey="blog">
+<BaseLayout title="札记" description="Yan Zeng 的公开文章与札记。" lang="zh" pageKey="blog">
   <div class="page">
     <header class="page-title">
-      <p class="eyebrow">Blog</p>
+      <p class="eyebrow">札记</p>
       <h1>Blog / Notes</h1>
-      <p>Reviewed public essays, academic notes, and intellectual notebook entries.</p>
+      <p>经过审核的公开文章、学术札记和思想笔记。部分正文暂时保留英文原文。</p>
     </header>
     <ContentList entries={blogEntries} />
   </div>

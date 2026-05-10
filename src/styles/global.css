@@ -74,6 +74,14 @@ a:hover {
   min-height: 72px;
 }
 
+.site-header__controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: flex-end;
+}
+
 .site-mark {
   color: var(--ink);
   display: grid;
@@ -107,6 +115,33 @@ a:hover {
 
 .site-nav a:hover {
   color: var(--accent);
+}
+
+.language-switcher {
+  align-items: center;
+  border: 1px solid var(--line);
+  display: flex;
+  gap: 0;
+}
+
+.language-switcher a {
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-width: 34px;
+  padding: 0.28rem 0.45rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.language-switcher a + a {
+  border-left: 1px solid var(--line);
+}
+
+.language-switcher a:hover,
+.language-switcher a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--surface);
 }
 
 .page {
@@ -394,6 +429,10 @@ a:hover {
   }
 
   .site-nav {
+    justify-content: flex-start;
+  }
+
+  .site-header__controls {
     justify-content: flex-start;
   }
 

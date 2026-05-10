@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentList from "../../components/ContentList.astro";
+import { hrefForPage } from "../../data/i18n";
+
+const researchEntries = (await getCollection("public"))
+  .filter((entry) => entry.id.startsWith("research/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const clusters = [
+  {
+    title: "AI信頼と役割負担の配分",
+    question: "AIが媒介する結果について、人間に信頼・検証・監督・責任を求めることはいつ公平なのか。",
+    description: "このプロジェクトはAI信頼の構造的説明を展開します。透明性や信頼性だけでなく、人間の参加者が依存関係の中で実践的に担える役割を占めているかを問います。",
+    keywords: ["AI信頼", "役割負担", "監督", "責任"],
+    links: [{ label: "関連論文", href: hrefForPage("papers", "ja") }]
+  },
+  {
+    title: "人間-AI依存と技術哲学",
+    question: "技術システムは社会的実践における行為性、技能、注意、責任をどのように変えるのか。",
+    description: "AIシステムを単なる道具ではなく、より広い実践の一部として捉えます。自動化が人間の技能と判断の社会的ニッチをどのように変えるかを検討します。",
+    keywords: ["依存", "自動化", "脱技能化", "技術哲学"],
+    links: [{ label: "研究ログ", href: hrefForPage("research", "ja") }]
+  },
+  {
+    title: "集合的赦しと集合的責任",
+    question: "神秘的な group mind を仮定せずに、集団は赦し・修復・責任にどのように関わるのか。",
+    description: "集合的赦しを薄い実践的規範行為として理解し、公共的立場、認識、修正、実行、制度的連続性、公共記憶に注目します。",
+    keywords: ["集合的赦し", "集合的行為性", "修復", "公共記憶"],
+    links: [{ label: "進行中の論文", href: hrefForPage("papers", "ja") }]
+  },
+  {
+    title: "哲学方法論、単純性、直観",
+    question: "単純性、複雑性、直観判断は哲学と科学の探究においてどのような役割を果たすべきか。",
+    description: "メタ哲学、科学哲学、実験哲学を結びつけ、単純性と複雑性を競合ではなく補完的な方法論的徳として考えます。",
+    keywords: ["メタ哲学", "単純性", "複雑性", "実験哲学"],
+    links: [{ label: "論文とコースペーパー", href: hrefForPage("papers", "ja") }]
+  }
+];
+---
+
+<BaseLayout title="研究" description="Yan Zeng の研究概要と公開研究ログ。" lang="ja" pageKey="research">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">研究</p>
+      <h1>研究</h1>
+      <p>研究は認識論、AI倫理、技術哲学の交差領域にあり、信頼、依存、責任、人間-AI関係の実践的構造に焦点を当てています。</p>
+    </header>
+
+    <section class="section" aria-labelledby="clusters-title">
+      <h2 id="clusters-title">研究クラスター</h2>
+      <div class="cluster-grid">
+        {clusters.map((cluster) => (
+          <article class="cluster-card">
+            <p class="eyebrow">Cluster</p>
+            <h3>{cluster.title}</h3>
+            <p class="cluster-question">{cluster.question}</p>
+            <p>{cluster.description}</p>
+            <ul class="tag-list tag-list--left" aria-label={`${cluster.title} keywords`}>
+              {cluster.keywords.map((keyword) => <li>{keyword}</li>)}
+            </ul>
+            <ul class="link-list" aria-label={`${cluster.title} links`}>
+              {cluster.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="logs-title">
+      <h2 id="logs-title">公開研究ログ</h2>
+      <p class="section-intro">大きな研究プロジェクトの一部を展開・検討・明確化する短い公開ノートです。本文は現時点では主に英語です。</p>
+      <ContentList entries={researchEntries} />
+    </section>
+  </div>
+</BaseLayout>

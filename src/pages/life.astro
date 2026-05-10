@@ -8,7 +8,7 @@ const lifeEntries = (await getCollection("public"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="Life" description="Reviewed public life notes by Yan Zeng.">
+<BaseLayout title="Life" description="Reviewed public life notes by Yan Zeng." pageKey="life">
   <div class="page">
     <header class="page-title">
       <p class="eyebrow">Life</p>

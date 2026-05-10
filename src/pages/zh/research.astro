@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentList from "../../components/ContentList.astro";
+import { hrefForPage } from "../../data/i18n";
+
+const researchEntries = (await getCollection("public"))
+  .filter((entry) => entry.id.startsWith("research/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const clusters = [
+  {
+    title: "AI 信任与角色负担分配",
+    question: "什么时候，让一个人去信任、验证、监督或承担 AI 中介结果的责任才是公平的？",
+    description: "这个项目发展一种结构性 AI 信任理论。它不只问系统是否透明、可靠、稳健、公平或可解释，而是问人在依赖关系中是否占据一个实践上可居住的角色。",
+    keywords: ["AI 信任", "角色负担", "监督", "责任"],
+    links: [
+      { label: "结构性 AI 信任研究札记", href: "https://yanzeng-philosophy.github.io/yan-zeng-website/notes/research/structural-ai-trust/" },
+      { label: "相关论文", href: hrefForPage("papers", "zh") }
+    ]
+  },
+  {
+    title: "人类-AI 依赖与技术哲学",
+    question: "技术系统如何重塑社会实践中的能动性、技能、注意力和责任？",
+    description: "这一路线把 AI 系统看作更广泛实践的一部分，而不仅仅是工具。它研究自动化如何改变人类技能和判断所在的社会生态位。",
+    keywords: ["依赖", "自动化", "去技能化", "技术哲学"],
+    links: [{ label: "AI 辅助写作的人类审核循环", href: "https://yanzeng-philosophy.github.io/yan-zeng-website/notes/research/human-review-loop/" }]
+  },
+  {
+    title: "集体宽恕与集体责任",
+    question: "群体如何参与宽恕、修复和责任，而不必预设神秘的 group mind？",
+    description: "这个项目发展一种薄的实践规范性集体宽恕理论，关注 standing、recognition、revision、enactment，以及制度连续性、公共记忆和政治修复。",
+    keywords: ["集体宽恕", "集体能动性", "修复", "公共记忆"],
+    links: [{ label: "进行中的论文", href: hrefForPage("papers", "zh") }]
+  },
+  {
+    title: "哲学方法论、简单性与直觉",
+    question: "简单性、复杂性和直觉判断在哲学与科学探究中应当扮演什么角色？",
+    description: "这项工作连接元哲学、科学哲学和实验哲学，思考哲学家如何使用直觉，以及简单性和复杂性为何可以是互补的方法论美德。",
+    keywords: ["元哲学", "简单性", "复杂性", "实验哲学"],
+    links: [{ label: "论文与课程论文", href: hrefForPage("papers", "zh") }]
+  }
+];
+---
+
+<BaseLayout title="研究" description="Yan Zeng 的研究概览与公开研究札记。" lang="zh" pageKey="research">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">研究</p>
+      <h1>研究</h1>
+      <p>我的研究位于认识论、AI 伦理和技术哲学的交叉处，重点关注信任、依赖、责任和人类-AI 关系的实践结构。</p>
+    </header>
+
+    <section class="section" aria-labelledby="clusters-title">
+      <h2 id="clusters-title">研究方向</h2>
+      <div class="cluster-grid">
+        {clusters.map((cluster) => (
+          <article class="cluster-card">
+            <p class="eyebrow">方向</p>
+            <h3>{cluster.title}</h3>
+            <p class="cluster-question">{cluster.question}</p>
+            <p>{cluster.description}</p>
+            <ul class="tag-list tag-list--left" aria-label={`${cluster.title} 关键词`}>
+              {cluster.keywords.map((keyword) => <li>{keyword}</li>)}
+            </ul>
+            <ul class="link-list" aria-label={`${cluster.title} 链接`}>
+              {cluster.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="logs-title">
+      <h2 id="logs-title">公开研究日志</h2>
+      <p class="section-intro">这些短札记用于发展、测试或澄清更大的研究项目。目前正文主要保留英文原文。</p>
+      <ContentList entries={researchEntries} />
+    </section>
+  </div>
+</BaseLayout>

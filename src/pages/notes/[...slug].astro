@@ -25,7 +25,7 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.summary ?? entry.data.category}>
+<BaseLayout title={entry.data.title} description={entry.data.summary ?? entry.data.category} pageKey="research">
   <div class="page">
     <article class="prose">
       <p class="eyebrow">{entry.data.category} | {formatDate(entry.data.date)}</p>

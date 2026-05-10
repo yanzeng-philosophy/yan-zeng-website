@@ -8,7 +8,7 @@ const nowEntries = (await getCollection("public"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="Now" description="Current work and priorities for Yan Zeng.">
+<BaseLayout title="Now" description="Current work and priorities for Yan Zeng." pageKey="now">
   <div class="page">
     <header class="page-title">
       <p class="eyebrow">Now</p>

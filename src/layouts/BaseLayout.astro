@@ -1,35 +1,44 @@
 ---
 import "../styles/global.css";
+import {
+  hrefForPage,
+  languages,
+  layoutText,
+  navLabels,
+  navOrder,
+  type Lang,
+  type PageKey
+} from "../data/i18n";
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Lang;
+  pageKey?: PageKey;
 }
 
 const {
   title = "Yan Zeng",
-  description = "Personal academic website for research, writing, and public notes."
+  description = "Personal academic website for research, writing, and public notes.",
+  lang = "en",
+  pageKey = "home"
 } = Astro.props;
 
 const siteTitle = title === "Yan Zeng" ? title : `${title} | Yan Zeng`;
-const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
-const hrefFor = (href: string) =>
-  href === "/" ? siteBase : `${siteBase}${href.replace(/^\/+/, "")}`;
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about/", label: "About" },
-  { href: "/cv/", label: "CV" },
-  { href: "/research/", label: "Research" },
-  { href: "/papers/", label: "Papers" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/life/", label: "Life" },
-  { href: "/now/", label: "Now" }
-];
+const text = layoutText[lang];
+const navItems = navOrder.map((key) => ({
+  href: hrefForPage(key, lang),
+  label: navLabels[lang][key]
+}));
+const languageLinks = (Object.keys(languages) as Lang[]).map((code) => ({
+  code,
+  ...languages[code],
+  href: hrefForPage(pageKey, code)
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,27 +49,42 @@ const navItems = [
     <title>{siteTitle}</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{text.skip}</a>
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="site-mark" href={hrefFor("/")} aria-label="Yan Zeng home">
+        <a class="site-mark" href={hrefForPage("home", lang)} aria-label="Yan Zeng home">
           <span class="site-mark__name">Yan Zeng</span>
-          <span class="site-mark__meta">Philosophy, AI ethics, trust</span>
+          <span class="site-mark__meta">{text.meta}</span>
         </a>
-        <nav class="site-nav" aria-label="Primary navigation">
+        <div class="site-header__controls">
+        <nav class="site-nav" aria-label={text.navLabel}>
           {
             navItems.map((item) => (
-              <a href={hrefFor(item.href)}>{item.label}</a>
+              <a href={item.href}>{item.label}</a>
             ))
           }
         </nav>
+        <nav class="language-switcher" aria-label={text.languageLabel}>
+          {
+            languageLinks.map((item) => (
+              <a
+                href={item.href}
+                aria-current={item.code === lang ? "page" : undefined}
+                title={item.label}
+              >
+                {item.short}
+              </a>
+            ))
+          }
+        </nav>
+        </div>
       </div>
     </header>
     <main id="main">
       <slot />
     </main>
     <footer class="site-footer">
-      <p>Public notes and academic materials by Yan Zeng. Drafts require human review before publication.</p>
+      <p>{text.footer}</p>
     </footer>
   </body>
 </html>

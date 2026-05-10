@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentList from "../../components/ContentList.astro";
+import { hrefForPage } from "../../data/i18n";
+
+const entries = (await getCollection("public")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latestEntries = entries.slice(0, 3);
+---
+
+<BaseLayout
+  title="Yan Zeng"
+  description="Yan Zeng の個人学術サイト：哲学、AI倫理、信頼、公開研究ノート。"
+  lang="ja"
+  pageKey="home"
+>
+  <div class="page">
+    <section class="hero" aria-labelledby="home-title">
+      <div>
+        <p class="eyebrow">カリフォルニア大学アーバイン校 哲学科 PhD Student</p>
+        <h1 id="home-title">Yan Zeng</h1>
+        <p class="hero__dek">
+          私の研究は認識論、AI倫理、信頼、そして人間とAIの依存関係の構造に関わっています。
+          このサイトは、公開可能な研究ノート、論文情報、学術資料を蓄積するための公開ノートです。
+        </p>
+        <div class="hero__actions">
+          <a class="button" href={hrefForPage("research", "ja")}>研究を読む</a>
+          <a class="button button--secondary" href={hrefForPage("now", "ja")}>近況を見る</a>
+        </div>
+      </div>
+
+      <aside class="research-visual" aria-label="研究テーマ">
+        <div class="research-visual__grid">
+          <div class="research-visual__cell"><strong>信頼</strong><span>AI媒介的実践</span></div>
+          <div class="research-visual__cell"><strong>役割</strong><span>負担の配分</span></div>
+          <div class="research-visual__cell"><strong>ニッチ</strong><span>社会的依存</span></div>
+          <div class="research-visual__cell"><strong>判断</strong><span>人間の責任</span></div>
+          <div class="research-visual__cell"><strong>ノート</strong><span>公開研究ログ</span></div>
+          <div class="research-visual__cell"><strong>草稿</strong><span>確認後に公開</span></div>
+          <div class="research-visual__cell"><strong>倫理</strong><span>システムと行為性</span></div>
+          <div class="research-visual__cell"><strong>方法</strong><span>明晰な議論</span></div>
+          <div class="research-visual__cell"><strong>近況</strong><span>現在の仕事</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="areas-title">
+      <h2 id="areas-title">サイトの構成</h2>
+      <div class="section-grid">
+        <article class="panel">
+          <h3>研究</h3>
+          <p>信頼、依存、AI倫理、社会認識論に関する研究ノート。</p>
+        </article>
+        <article class="panel">
+          <h3>執筆</h3>
+          <p>公開エッセイとノート。英語・中国語・日本語に対応した構成。</p>
+        </article>
+        <article class="panel">
+          <h3>近況</h3>
+          <p>現在の研究上の関心と公開できる生活上の重点についての短い更新。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="latest-title">
+      <h2 id="latest-title">最新の公開ノート</h2>
+      <p class="section-intro">研究ログ本文は現時点では主に英語で掲載しています。今後、日本語版を順次追加できます。</p>
+      <ContentList entries={latestEntries} />
+    </section>
+  </div>
+</BaseLayout>

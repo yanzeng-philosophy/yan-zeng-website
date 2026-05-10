@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentList from "../../components/ContentList.astro";
+
+const nowEntries = (await getCollection("public"))
+  .filter((entry) => entry.id.startsWith("now/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="近況" description="Yan Zeng の現在の研究と重点。" lang="ja" pageKey="now">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">近況</p>
+      <h1>近況</h1>
+      <p>現在の研究上の焦点、公開プロジェクト、生活上の重点についての短い更新。</p>
+    </header>
+    <ContentList entries={nowEntries} />
+  </div>
+</BaseLayout>
