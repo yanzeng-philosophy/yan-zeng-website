@@ -59,26 +59,26 @@ const languageLinks = (Object.keys(languages) as Lang[]).map((code) => ({
           <span class="site-mark__meta">{text.meta}</span>
         </a>
         <div class="site-header__controls">
-        <nav class="site-nav" aria-label={text.navLabel}>
-          {
-            navItems.map((item) => (
-              <a href={item.href}>{item.label}</a>
-            ))
-          }
-        </nav>
-        <nav class="language-switcher" aria-label={text.languageLabel}>
-          {
-            languageLinks.map((item) => (
-              <a
-                href={item.href}
-                aria-current={item.code === lang ? "page" : undefined}
-                title={item.label}
-              >
-                {item.short}
-              </a>
-            ))
-          }
-        </nav>
+          <nav class="site-nav" aria-label={text.navLabel}>
+            {
+              navItems.map((item) => (
+                <a href={item.href}>{item.label}</a>
+              ))
+            }
+          </nav>
+          <nav class="language-switcher" aria-label={text.languageLabel}>
+            {
+              languageLinks.map((item) => (
+                <a
+                  href={item.href}
+                  aria-current={item.code === lang ? "page" : undefined}
+                  title={item.label}
+                >
+                  {item.short}
+                </a>
+              ))
+            }
+          </nav>
         </div>
       </div>
     </header>
