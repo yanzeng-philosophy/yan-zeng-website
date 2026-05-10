@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentList from "../components/ContentList.astro";
+
+const researchEntries = (await getCollection("public"))
+  .filter((entry) => entry.id.startsWith("research/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Research" description="Public research notes by Yan Zeng.">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">Research</p>
+      <h1>Research</h1>
+      <p>
+        Public research logs and notes after review. Drafts and private materials are
+        excluded from the site build.
+      </p>
+    </header>
+    <ContentList entries={researchEntries} />
+  </div>
+</BaseLayout>

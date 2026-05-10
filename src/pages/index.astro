@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentList from "../components/ContentList.astro";
+
+const entries = (await getCollection("public")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latestEntries = entries.slice(0, 3);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Yan Zeng"
+  description="Yan Zeng's personal academic website for philosophy, AI ethics, trust, and public research notes."
+>
+  <div class="page">
+    <section class="hero" aria-labelledby="home-title">
+      <div>
+        <p class="eyebrow">PhD Student in Philosophy, University of California, Irvine</p>
+        <h1 id="home-title">Yan Zeng</h1>
+        <p class="hero__dek">
+          I work on epistemology, AI ethics, trust, and the structure of human-AI
+          dependence. This site is a public research notebook for ideas that have
+          been reviewed and approved for publication.
+        </p>
+        <div class="hero__actions">
+          <a class="button" href={`${base}research/`}>Read research notes</a>
+          <a class="button button--secondary" href={`${base}now/`}>See now page</a>
+        </div>
+      </div>
+
+      <aside class="research-visual" aria-label="Research themes">
+        <div class="research-visual__grid">
+          <div class="research-visual__cell"><strong>Trust</strong><span>AI-mediated practices</span></div>
+          <div class="research-visual__cell"><strong>Roles</strong><span>Burden allocation</span></div>
+          <div class="research-visual__cell"><strong>Niches</strong><span>Social dependence</span></div>
+          <div class="research-visual__cell"><strong>Care</strong><span>Human judgment</span></div>
+          <div class="research-visual__cell"><strong>Notes</strong><span>Public research log</span></div>
+          <div class="research-visual__cell"><strong>Drafts</strong><span>Reviewed before release</span></div>
+          <div class="research-visual__cell"><strong>Ethics</strong><span>Systems and agency</span></div>
+          <div class="research-visual__cell"><strong>Method</strong><span>Clear prose</span></div>
+          <div class="research-visual__cell"><strong>Now</strong><span>Current work</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="areas-title">
+      <h2 id="areas-title">Site Areas</h2>
+      <div class="section-grid">
+        <article class="panel">
+          <h3>Research</h3>
+          <p>Working notes on trust, dependence, AI ethics, and social epistemology.</p>
+        </article>
+        <article class="panel">
+          <h3>Writing</h3>
+          <p>Essays and public notes, with bilingual-friendly metadata and structure.</p>
+        </article>
+        <article class="panel">
+          <h3>Now</h3>
+          <p>A short monthly snapshot of current academic and personal priorities.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="latest-title">
+      <h2 id="latest-title">Latest Public Notes</h2>
+      <ContentList entries={latestEntries} />
+    </section>
+  </div>
+</BaseLayout>

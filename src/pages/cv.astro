@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="CV" description="Public CV for Yan Zeng.">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">CV</p>
+      <h1>Curriculum Vitae</h1>
+      <p>Use this page for a reviewed public CV and selected academic information.</p>
+      <div class="button-row">
+        <a class="button" href={`${base}cv.pdf`}>Open CV PDF</a>
+      </div>
+    </header>
+
+    <article class="prose">
+      <h2>Public CV Placeholder</h2>
+      <p>
+        The repository includes a placeholder PDF at <code>public/cv.pdf</code>.
+        Replace it with the reviewed public CV before launch.
+      </p>
+      <h2>Suggested Sections</h2>
+      <p>Education, areas of specialization, areas of competence, publications, talks, teaching, service, and contact.</p>
+    </article>
+  </div>
+</BaseLayout>

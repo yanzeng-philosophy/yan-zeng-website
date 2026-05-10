@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+
+# Private material must not be committed.
+content/private/**
+!content/private/README.md
+
+# Drafts are not rendered. If the repo is public, real drafts should also stay uncommitted.
+content/drafts/**/*.md
+!content/drafts/README.md
+!content/drafts/ai-generated/sample-draft.md

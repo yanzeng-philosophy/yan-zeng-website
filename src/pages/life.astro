@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentList from "../components/ContentList.astro";
+
+const lifeEntries = (await getCollection("public"))
+  .filter((entry) => entry.id.startsWith("life/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Life" description="Reviewed public life notes by Yan Zeng.">
+  <div class="page">
+    <header class="page-title">
+      <p class="eyebrow">Life</p>
+      <h1>Life</h1>
+      <p>Public life notes that avoid private addresses, finances, health, family, and administrative details.</p>
+    </header>
+    <ContentList entries={lifeEntries} />
+  </div>
+</BaseLayout>

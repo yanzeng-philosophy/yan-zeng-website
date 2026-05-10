@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Yan Zeng",
+  description = "Personal academic website for research, writing, and public notes."
+} = Astro.props;
+
+const siteTitle = title === "Yan Zeng" ? title : `${title} | Yan Zeng`;
+const base = import.meta.env.BASE_URL;
+const hrefFor = (href: string) => (href === "/" ? base : `${base}${href.replace(/^\//, "")}`);
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/cv/", label: "CV" },
+  { href: "/research/", label: "Research" },
+  { href: "/papers/", label: "Papers" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/life/", label: "Life" },
+  { href: "/now/", label: "Now" }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{siteTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-mark" href={hrefFor("/")} aria-label="Yan Zeng home">
+          <span class="site-mark__name">Yan Zeng</span>
+          <span class="site-mark__meta">Philosophy, AI ethics, trust</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          {
+            navItems.map((item) => (
+              <a href={hrefFor(item.href)}>{item.label}</a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Public notes and academic materials by Yan Zeng. Drafts require human review before publication.</p>
+    </footer>
+  </body>
+</html>
