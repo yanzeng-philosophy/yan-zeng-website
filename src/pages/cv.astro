@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="CV" description="Public CV for Yan Zeng.">
@@ -9,20 +7,48 @@ const base = import.meta.env.BASE_URL;
     <header class="page-title">
       <p class="eyebrow">CV</p>
       <h1>Curriculum Vitae</h1>
-      <p>Use this page for a reviewed public CV and selected academic information.</p>
-      <div class="button-row">
-        <a class="button" href={`${base}cv.pdf`}>Open CV PDF</a>
-      </div>
+      <p>A public academic snapshot. Full details should be added only after review.</p>
     </header>
 
     <article class="prose">
-      <h2>Public CV Placeholder</h2>
+      <h2>Current Position</h2>
       <p>
-        The repository includes a placeholder PDF at <code>public/cv.pdf</code>.
-        Replace it with the reviewed public CV before launch.
+        PhD Student in Philosophy, University of California, Irvine.
       </p>
-      <h2>Suggested Sections</h2>
-      <p>Education, areas of specialization, areas of competence, publications, talks, teaching, service, and contact.</p>
+
+      <h2>Areas of Specialization</h2>
+      <ul>
+        <li>Epistemology.</li>
+        <li>AI ethics.</li>
+        <li>Trust, reliance, and human-AI dependence.</li>
+      </ul>
+
+      <h2>Areas of Competence</h2>
+      <ul>
+        <li>Social epistemology.</li>
+        <li>Philosophy of technology.</li>
+        <li>Ethics of institutional and technical systems.</li>
+      </ul>
+
+      <h2>Research Themes</h2>
+      <ul>
+        <li>Unfair role-burden allocation in AI-mediated practices.</li>
+        <li>Trust and oversight under conditions of asymmetrical expertise.</li>
+        <li>Technological deskilling and social niche displacement.</li>
+      </ul>
+
+      <h2>Papers and Works in Progress</h2>
+      <p>
+        Public paper information will be listed here once titles, abstracts, or
+        preprints are ready to circulate.
+      </p>
+
+      <h2>PDF CV</h2>
+      <p>
+        A reviewed PDF CV can be added at <code>public/cv.pdf</code>. The first
+        version of this site keeps the web CV minimal to avoid publishing
+        unreviewed personal details.
+      </p>
     </article>
   </div>
 </BaseLayout>
