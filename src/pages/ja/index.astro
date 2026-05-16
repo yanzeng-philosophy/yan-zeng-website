@@ -7,7 +7,18 @@ import { hrefForPage } from "../../data/i18n";
 const entries = (await getCollection("public")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const latestEntries = entries.filter((entry) => entry.id.startsWith("ja/")).slice(0, 3);
+const translatedEntryIds = new Set(
+  entries
+    .filter((entry) => entry.id.startsWith("ja/"))
+    .map((entry) => entry.id.replace(/^ja\//, ""))
+);
+const latestEntries = entries
+  .filter(
+    (entry) =>
+      entry.id.startsWith("ja/") ||
+      (!entry.id.startsWith("zh/") && !translatedEntryIds.has(entry.id))
+  )
+  .slice(0, 3);
 ---
 
 <BaseLayout

@@ -3,8 +3,18 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentList from "../../components/ContentList.astro";
 
-const blogEntries = (await getCollection("public"))
-  .filter((entry) => entry.id.startsWith("zh/essays/"))
+const entries = await getCollection("public");
+const translatedEssayIds = new Set(
+  entries
+    .filter((entry) => entry.id.startsWith("zh/essays/"))
+    .map((entry) => entry.id.replace(/^zh\//, ""))
+);
+const blogEntries = entries
+  .filter(
+    (entry) =>
+      entry.id.startsWith("zh/essays/") ||
+      (entry.id.startsWith("essays/") && !translatedEssayIds.has(entry.id))
+  )
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
