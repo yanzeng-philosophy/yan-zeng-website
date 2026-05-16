@@ -2,14 +2,16 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContentList from "../components/ContentList.astro";
+import { noteHref, siteBase } from "../data/i18n";
 
 const entries = (await getCollection("public")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const latestEntries = entries
-  .filter((entry) => !entry.id.startsWith("zh/") && !entry.id.startsWith("ja/"))
-  .slice(0, 3);
-const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
+const canonicalEntries = entries.filter(
+  (entry) => !entry.id.startsWith("zh/") && !entry.id.startsWith("ja/")
+);
+const latestEntries = canonicalEntries.slice(0, 3);
+const latestEssay = canonicalEntries.find((entry) => entry.id.startsWith("essays/"));
 ---
 
 <BaseLayout
@@ -39,19 +41,19 @@ const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
           <span class="hero-preview__dot"></span>
           <span class="hero-preview__dot"></span>
         </div>
-        <a class="hero-preview__article" href={`${siteBase}notes/essays/soft-enclosure-convenience-dependence/`}>
-          <p class="eyebrow">Latest Essay</p>
-          <h2>The Soft Enclosure</h2>
-          <p>
-            When convenience becomes dependence, formal freedom can remain intact
-            while the capacities that make freedom usable quietly erode.
-          </p>
-          <div class="hero-preview__meta">
-            <span>Essay</span>
-            <span>AI</span>
-            <span>Language</span>
-          </div>
-        </a>
+        {
+          latestEssay && (
+            <a class="hero-preview__article" href={noteHref(latestEssay.id)}>
+              <p class="eyebrow">Latest Essay</p>
+              <h2>{latestEssay.data.title}</h2>
+              {latestEssay.data.summary && <p>{latestEssay.data.summary}</p>}
+              <div class="hero-preview__meta">
+                <span>{latestEssay.data.category}</span>
+                {latestEssay.data.tags.slice(0, 2).map((tag) => <span>{tag}</span>)}
+              </div>
+            </a>
+          )
+        }
         <div class="hero-preview__tiles" aria-label="Site themes">
           <div class="hero-preview__tile"><strong>Research</strong><span>Trust, responsibility, and AI-mediated practices.</span></div>
           <div class="hero-preview__tile"><strong>Notebook</strong><span>Reviewed essays, logs, projects, and reflections.</span></div>
