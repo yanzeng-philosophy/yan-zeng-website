@@ -6,6 +6,8 @@ import ContentList from "../components/ContentList.astro";
 const researchEntries = (await getCollection("public"))
   .filter((entry) => entry.id.startsWith("research/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const relatedEssay = (await getCollection("public")).find((entry) => entry.id === "essays/weak-ties-strong-ties-uncertainty-investment");
+
 
 const siteBase = "https://yanzeng-philosophy.github.io/yan-zeng-website/";
 
@@ -92,6 +94,13 @@ const clusters = [
           ))
         }
       </div>
+    </section>
+
+
+    <section class="section" aria-labelledby="related-essay-title">
+      <h2 id="related-essay-title">Related Essays</h2>
+      <p class="section-intro">A conceptual essay on social strategy and uncertainty structures.</p>
+      {relatedEssay ? <ContentList entries={[relatedEssay]} /> : <p>Not available yet.</p>}
     </section>
 
     <section class="section" aria-labelledby="logs-title">

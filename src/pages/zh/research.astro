@@ -7,6 +7,8 @@ import { hrefForPage } from "../../data/i18n";
 const researchEntries = (await getCollection("public"))
   .filter((entry) => entry.id.startsWith("zh/research/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const relatedEssay = (await getCollection("public")).find((entry) => entry.id === "zh/essays/weak-ties-strong-ties-uncertainty-investment");
+
 
 const clusters = [
   {
@@ -69,6 +71,13 @@ const clusters = [
           </article>
         ))}
       </div>
+    </section>
+
+
+    <section class="section" aria-labelledby="related-essay-title">
+      <h2 id="related-essay-title">相关文章</h2>
+      <p class="section-intro">关于社会连接策略与不确定性结构的概念文章。</p>
+      {relatedEssay ? <ContentList entries={[relatedEssay]} locale="zh" /> : <p>Not available yet.</p>}
     </section>
 
     <section class="section" aria-labelledby="logs-title">
